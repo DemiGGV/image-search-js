@@ -1,0 +1,39 @@
+<form class="search-form" id="search-form">
+  <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+  <button type="submit">Search</button>
+</form>
+
+<!-- Элемент div.gallery изначально есть в HTML документе, и в него необходимо рендерить разметку карточек изображений. При
+поиске по новому ключевому слову необходимо полностью очищать содержимое галереи, чтобы не смешивать результаты.
+
+<div class="gallery">
+</div>
+
+Шаблон разметки карточки одного изображения для галереи.
+
+<div class="photo-card">
+  <img src="" alt="" loading="lazy" />
+  <div class="info">
+    <p class="info-item">
+      <b>Likes</b>
+    </p>
+    <p class="info-item">
+      <b>Views</b>
+    </p>
+    <p class="info-item">
+      <b>Comments</b>
+    </p>
+    <p class="info-item">
+      <b>Downloads</b>
+    </p>
+  </div>
+</div>
+
+В HTML документе уже есть разметка кнопки при клике по которой необходимо выполнять запрос за следующей группой
+изображений и добавлять разметку к уже существующим элементам галереи.
+
+<button type="button" class="load-more">Load more</button>
+
+Изначально кнопка должна быть скрыта.
+После первого запроса кнопка появляется в интерфейсе под галереей.
+При повторном сабмите формы кнопка сначала прячется, а после запроса опять отображается. -->
