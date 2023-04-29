@@ -1,5 +1,3 @@
-// box-shadow: 0 10px 15px -3px #0000001a,0 6px 4px -4px #0000001a;
-
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import '../node_modules/simplelightbox/dist/simple-lightbox.min.css';
 import SimpleLightbox from 'simplelightbox';
