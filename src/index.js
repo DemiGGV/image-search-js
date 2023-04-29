@@ -32,6 +32,7 @@ function onSubmitQuerry(event) {
   order = o.value;
   clearField();
   getData(currentPage);
+  console.log('get1');
 }
 
 let observer = new IntersectionObserver(onLoad, options);
@@ -40,6 +41,7 @@ function onLoad(entries) {
     if (entry.isIntersecting) {
       currentPage++;
       getData(currentPage);
+      console.log('get2');
     }
   });
 }
