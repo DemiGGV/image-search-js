@@ -103,7 +103,7 @@ function galleryMarkup(dataArr) {
       }) => `
         <div class="photo-card">
         <a href="${largeImageURL}">
-        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+        <img src="${webformatURL}" alt="${tags}" loading="lazy" width='200' height='120' />
         <div class="info">
         <p class="info-item">
         <b>Likes</b>
