@@ -4,14 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page title</title>
+  <title>Image search</title>
   <link rel="stylesheet" href="./sass/index.scss" />
   <script type="module" src="./index.js"></script>
 </head>
 
 <body>
 
-  <include src="./partials/example.html"></include>
+  <form class="search-form" id="search-form">
+    <input class='field-input' type="text" name="querry" autocomplete="off" placeholder="Search images..." />
+    <button class='field-submit' type="submit">🔍</button>
+    <ul class="sortBox">
+      <p>Sorting:</p>
+      <input name="order" type="radio" value="popular" checked>Popular<br>
+      <input name="order" type="radio" value="latest">Latest<br>
+    </ul>
+  </form>
+
+  <div class="gallery">
+  </div>
+
+  <div class="js-guard"></div>
 </body>
 
 </html>
