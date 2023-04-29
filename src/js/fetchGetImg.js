@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 async function fetchGetImg(querry, order, page, perPage) {
   const BASE_URL = 'https://pixabay.com/api';
@@ -12,15 +12,9 @@ async function fetchGetImg(querry, order, page, perPage) {
     page: page,
     per_page: perPage,
   });
-  // const response = await axios.get(`${BASE_URL}?${params}`);
-  // console.log(response);
-  return await fetch(`${BASE_URL}?${params}`).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  });
-  // return response.data;
+  const response = await axios.get(`${BASE_URL}?${params}`);
+  console.log(response);
+  return response.data;
 }
 
 export { fetchGetImg };
