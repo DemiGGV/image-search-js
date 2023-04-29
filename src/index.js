@@ -15,7 +15,7 @@ let order;
 let totalHits = 0;
 let options = {
   root: null,
-  rootMargin: '250px',
+  rootMargin: '500px',
   threshold: 1.0,
 };
 const PER_PAGE = 40;
