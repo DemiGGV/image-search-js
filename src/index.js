@@ -36,7 +36,8 @@ function onSubmitQuerry(event) {
 }
 
 let observer = new IntersectionObserver(onLoad, options);
-function onLoad(entries) {
+function onLoad(entries, observer) {
+  console.log(observer);
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       currentPage++;
