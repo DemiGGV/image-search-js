@@ -15,7 +15,7 @@ let order;
 let totalHits = 0;
 let options = {
   root: null,
-  rootMargin: '200px',
+  rootMargin: '500px',
   threshold: 1.0,
 };
 const PER_PAGE = 40;
@@ -30,19 +30,15 @@ function onSubmitQuerry(event) {
   } = event.currentTarget;
   querry = q.value;
   order = o.value;
-  clearField();
   getData(currentPage);
-  console.log('get1');
 }
 
 let observer = new IntersectionObserver(onLoad, options);
 function onLoad(entries) {
-  console.log(entries);
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       currentPage++;
       getData(currentPage);
-      console.log('get2');
     }
   });
 }
@@ -57,6 +53,10 @@ function getData(currentPage) {
         return;
       }
       totalHits = data.totalHits;
+      if (currentPage === 1) {
+        clearField();
+        Notify.success(`Hooray! We found ${data.totalHits} images.`);
+      }
       renderGallery(data.hits);
       if (currentPage > 1) {
         imgGallery.destroy();
@@ -65,9 +65,6 @@ function getData(currentPage) {
         captionsData: 'alt',
         captionDelay: 250,
       });
-      if (currentPage === 1) {
-        Notify.success(`Hooray! We found ${data.totalHits} images.`);
-      }
       if (currentPage === Math.ceil(totalHits / PER_PAGE)) {
         observer.unobserve(refs.jsGuard);
       } else {
