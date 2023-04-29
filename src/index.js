@@ -131,4 +131,5 @@ function galleryMarkup(dataArr) {
 function clearField() {
   refs.gallery.innerHTML = '';
   refs.searchForm.reset();
+  currentPage = 1;
 }
