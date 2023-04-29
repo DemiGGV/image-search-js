@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function fetchGetImg(querry, order, page = 1, perPage) {
+async function fetchGetImg(querry, order, page, perPage) {
   const BASE_URL = 'https://pixabay.com/api';
   const params = new URLSearchParams({
     key: '35847487-2de85eaec6e65c1cfed73bf95', //API
@@ -13,7 +13,7 @@ async function fetchGetImg(querry, order, page = 1, perPage) {
     per_page: perPage,
   });
   const response = await axios.get(`${BASE_URL}?${params}`);
-  console.log(response.data);
+  console.log(response);
   return response.data;
 }
 
