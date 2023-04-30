@@ -67,6 +67,10 @@ p {
   box-shadow: 0 10px 15px -3px #0000001a, 0 6px 4px -4px #0000001a;
   border-radius: 4px;
   overflow: hidden;
+  transition: transform 300ms ease-in-out;
+}
+.photo-card:hover {
+  transform: scale(1.01);
 }
 .photo-card img {
   object-fit: cover;
