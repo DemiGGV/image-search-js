@@ -30,6 +30,10 @@ function onSubmitQuerry(event) {
   } = event.currentTarget;
   querry = q.value;
   order = o.value;
+  if (!querry) {
+    Notify.failure('Input search query!');
+    return;
+  }
   resetSearch();
   getData(currentPage);
 }
