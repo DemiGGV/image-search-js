@@ -30,6 +30,7 @@ function onSubmitQuerry(event) {
   } = event.currentTarget;
   querry = q.value;
   order = o.value;
+  resetSearch();
   getData(currentPage);
 }
 
@@ -46,7 +47,7 @@ function onLoad(entries) {
 function getData(currentPage) {
   fetchGetImg(querry, order, currentPage, PER_PAGE)
     .then(data => {
-      if (data.hits.length === 0) {
+      if (!data.hits.length && !data.totalHits) {
         Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
@@ -54,7 +55,7 @@ function getData(currentPage) {
       }
       totalHits = data.totalHits;
       if (currentPage === 1) {
-        clearField();
+        resetSearch();
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
       renderGallery(data.hits);
@@ -125,8 +126,33 @@ function galleryMarkup(dataArr) {
     .join('');
 }
 
-function clearField() {
+function resetSearch() {
   refs.gallery.innerHTML = '';
   refs.searchForm.reset();
   currentPage = 1;
 }
+
+const btnUp = {
+  el: document.querySelector('.btn-up'),
+  show() {
+    this.el.hidden = false;
+  },
+  hide() {
+    this.el.hidden = true;
+  },
+  addEventListener() {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      scrollY > 500 ? this.show() : this.hide();
+    });
+    document.querySelector('.btn-up').onclick = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    };
+  },
+};
+
+btnUp.addEventListener();
