@@ -13,15 +13,40 @@ let currentPage = 1;
 let querry;
 let order;
 let totalHits = 0;
-let options = {
+let optionsObserver = {
   root: null,
-  rootMargin: '500px',
+  rootMargin: '200px',
   threshold: 1.0,
 };
 const PER_PAGE = 40;
+//--- Scroll Up Button Object
+const btnUp = {
+  el: document.querySelector('.btn-up'),
+  show() {
+    this.el.hidden = false;
+  },
+  hide() {
+    this.el.hidden = true;
+  },
+  addEventListener() {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      scrollY > 500 ? this.show() : this.hide();
+    });
+    document.querySelector('.btn-up').onclick = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    };
+  },
+};
 
+btnUp.addEventListener();
 refs.searchForm.addEventListener('submit', onSubmitQuerry);
 refs.gallery.addEventListener('click', onClickGalleryItem);
+let observer = new IntersectionObserver(onLoad, optionsObserver);
 
 function onSubmitQuerry(event) {
   event.preventDefault();
@@ -35,10 +60,10 @@ function onSubmitQuerry(event) {
     return;
   }
   resetSearch();
+  observer.disconnect();
   getData(currentPage);
 }
 
-let observer = new IntersectionObserver(onLoad, options);
 function onLoad(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -59,21 +84,19 @@ function getData(currentPage) {
       }
       totalHits = data.totalHits;
       if (currentPage === 1) {
-        resetSearch();
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
-      renderGallery(data.hits);
       if (currentPage > 1) {
         imgGallery.destroy();
       }
+      renderGallery(data.hits);
       imgGallery = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionDelay: 250,
       });
+      observer.observe(refs.jsGuard);
       if (currentPage === Math.ceil(totalHits / PER_PAGE)) {
         observer.unobserve(refs.jsGuard);
-      } else {
-        observer.observe(refs.jsGuard);
       }
     })
     .catch(error => console.error(error));
@@ -132,31 +155,5 @@ function galleryMarkup(dataArr) {
 
 function resetSearch() {
   refs.gallery.innerHTML = '';
-  // refs.searchForm.reset();
   currentPage = 1;
 }
-
-const btnUp = {
-  el: document.querySelector('.btn-up'),
-  show() {
-    this.el.hidden = false;
-  },
-  hide() {
-    this.el.hidden = true;
-  },
-  addEventListener() {
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      scrollY > 500 ? this.show() : this.hide();
-    });
-    document.querySelector('.btn-up').onclick = () => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
-    };
-  },
-};
-
-btnUp.addEventListener();
