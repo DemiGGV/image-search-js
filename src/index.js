@@ -23,8 +23,6 @@ const PER_PAGE = 40;
 refs.searchForm.addEventListener('submit', onSubmitQuerry);
 refs.gallery.addEventListener('click', onClickGalleryItem);
 
-// зробити запит при зміні сортування
-
 function onSubmitQuerry(event) {
   event.preventDefault();
   const {
