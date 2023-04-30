@@ -132,7 +132,7 @@ function galleryMarkup(dataArr) {
 
 function resetSearch() {
   refs.gallery.innerHTML = '';
-  refs.searchForm.reset();
+  // refs.searchForm.reset();
   currentPage = 1;
 }
 
