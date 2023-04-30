@@ -60,7 +60,7 @@ function onSubmitQuerry(event) {
     return;
   }
   resetSearch();
-  observer.disconnect();
+  observer.unobserve(refs.jsGuard);
   getData(currentPage);
 }
 
