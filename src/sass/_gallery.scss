@@ -18,7 +18,7 @@ p {
 }
 .field-input {
   outline: none;
-  width: 250px;
+  width: 350px;
   min-height: 40px;
   margin-left: 44px;
   padding: 8px 40px 8px 16px;
@@ -56,6 +56,7 @@ p {
 }
 .gallery {
   padding: 10px;
+  overflow-x: hidden;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(4, auto);
@@ -104,9 +105,14 @@ p {
   position: fixed;
   right: 20px;
   bottom: 20px;
+  border: none;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
+  box-shadow: 0 0px 25px 3px #0000003d, 0 0px 4px 4px #0000004f;
+  border-radius: 4px;
   width: 40px;
   height: 40px;
 }
