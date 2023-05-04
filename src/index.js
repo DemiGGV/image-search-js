@@ -86,14 +86,15 @@ function getData(currentPage) {
       if (currentPage === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
-      if (currentPage > 1) {
-        imgGallery.destroy();
-      }
       renderGallery(data.hits);
-      imgGallery = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
+      if (currentPage > 1) {
+        imgGallery.refresh();
+      } else {
+        imgGallery = new SimpleLightbox('.gallery a', {
+          captionsData: 'alt',
+          captionDelay: 250,
+        });
+      }
       observer.observe(refs.jsGuard);
       if (currentPage === Math.ceil(totalHits / PER_PAGE)) {
         observer.unobserve(refs.jsGuard);
