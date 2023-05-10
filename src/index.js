@@ -7,6 +7,7 @@ const refs = {
   searchForm: document.querySelector('.search-form'),
   gallery: document.querySelector('.gallery'),
   jsGuard: document.querySelector('.js-guard'),
+  jsLoader: document.querySelector('.js-loader'),
 };
 let imgGallery;
 let currentPage = 1;
@@ -21,12 +22,12 @@ let optionsObserver = {
 const PER_PAGE = 40;
 //--- Scroll Up Button Object
 const btnUp = {
-  el: document.querySelector('.btn-up'),
+  element: document.querySelector('.btn-up'),
   show() {
-    this.el.hidden = false;
+    this.element.hidden = false;
   },
   hide() {
-    this.el.hidden = true;
+    this.element.hidden = true;
   },
   addEventListener() {
     window.addEventListener('scroll', () => {
@@ -50,6 +51,7 @@ let observer = new IntersectionObserver(onLoad, optionsObserver);
 
 function onSubmitQuerry(event) {
   event.preventDefault();
+  refs.jsLoader.classList.toggle('loader');
   const {
     elements: { querry: q, order: o },
   } = event.currentTarget;
@@ -84,6 +86,7 @@ function getData(currentPage) {
       }
       totalHits = data.totalHits;
       if (currentPage === 1) {
+        refs.jsLoader.classList.toggle('loader');
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
       renderGallery(data.hits);
