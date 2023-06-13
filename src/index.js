@@ -92,7 +92,6 @@ function getData(currentPage) {
       if (currentPage > 1) {
         imgGallery.refresh();
       } else {
-        console.log(Array.from(document.querySelectorAll('.gallery a')));
         imgGallery = new SimpleLightbox('.gallery a', {
           captionsData: 'alt',
           captionDelay: 250,
