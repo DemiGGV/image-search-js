@@ -46,7 +46,6 @@ const btnUp = {
 
 btnUp.addEventListener();
 refs.searchForm.addEventListener('submit', onSubmitQuerry);
-refs.gallery.addEventListener('click', onClickGalleryItem);
 let observer = new IntersectionObserver(onLoad, optionsObserver);
 
 function onSubmitQuerry(event) {
@@ -93,6 +92,7 @@ function getData(currentPage) {
       if (currentPage > 1) {
         imgGallery.refresh();
       } else {
+        console.log(Array.from(document.querySelectorAll('.gallery a')));
         imgGallery = new SimpleLightbox('.gallery a', {
           captionsData: 'alt',
           captionDelay: 250,
@@ -104,14 +104,6 @@ function getData(currentPage) {
       }
     })
     .catch(error => console.error(error));
-}
-
-function onClickGalleryItem(e) {
-  e.preventDefault();
-  imgGallery.on('show.simplelightbox');
-  imgGallery.on('error.simplelightbox', e =>
-    console.log('error in SimpleGallery:', e)
-  );
 }
 
 function renderGallery(dataArr) {
